@@ -4,10 +4,12 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { FormComponent } from './form/form.component';
+import { newUserComponent } from './newUserComponent/newUser.component';
 import { LoginComponent } from './login/login.component';
 import { AccountRoutingModule } from './account.route';
 import { AccountAppComponent } from './account.app.component';
+import { AccountService } from './services/account.service';
+import { CustomFormsModule } from 'ngx-custom-validators';
 
 
 
@@ -15,7 +17,7 @@ import { AccountAppComponent } from './account.app.component';
 @NgModule({
   declarations: [
     AccountAppComponent,
-    FormComponent,
+    newUserComponent,
     LoginComponent
   ],
   imports: [
@@ -24,7 +26,11 @@ import { AccountAppComponent } from './account.app.component';
     AccountRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CustomFormsModule
+  ],
+  providers: [
+    AccountService
   ]
 })
 export class AccountModule { }
