@@ -74,10 +74,18 @@ export class newUserComponent implements OnInit, AfterViewInit {
     if(this.newUserForm.dirty && this.newUserForm.valid){
       this.user = Object.assign({}, this.user, this.newUserForm.value);
 
-      this.service.createUser(this.user);
+      this.service.createUser(this.user).subscribe(success => {this.success(success)}, error => {this.error(error)});
 
       this.changeNotSave = true;
     }
+  }
+
+  success(response: any){
+
+  }
+
+  error(response: any){
+
   }
 
 }
