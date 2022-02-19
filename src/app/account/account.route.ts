@@ -3,13 +3,14 @@ import { RouterModule, Routes } from "@angular/router";
 import { AccountAppComponent } from "./account.app.component";
 import { newUserComponent } from "./newUserComponent/newUser.component";
 import { LoginComponent } from "./login/login.component";
+import { AccountGuard } from "./services/account.guard";
 
 const accountRouterConfig: Routes = [
  {
      path: '', component: AccountAppComponent,
      children: [
-         { path: 'form', component: newUserComponent },
-         { path: 'login', component: LoginComponent }
+         { path: 'form', component: newUserComponent, canActivate: [AccountGuard], canDeactivate: [AccountGuard] },
+         { path: 'login', component: LoginComponent, canActivate: [AccountGuard] }
      ]
  }   
 ]

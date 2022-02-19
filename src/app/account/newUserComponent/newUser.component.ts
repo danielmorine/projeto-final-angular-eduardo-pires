@@ -7,6 +7,7 @@ import { Observable, fromEvent, merge } from 'rxjs';
 
 import { User } from '../models/user';
 import { AccountService } from '../services/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -28,7 +29,8 @@ export class newUserComponent implements OnInit, AfterViewInit {
 
   constructor(
     private fb: FormBuilder, 
-    private service: AccountService) {
+    private service: AccountService,
+    private router: Router) {
       this.validationMessages = {
         email: {
           required: 'Informe o e-email',
@@ -81,11 +83,14 @@ export class newUserComponent implements OnInit, AfterViewInit {
   }
 
   success(response: any){
-
+    this.newUserForm.reset();
+    this.errors = [];
+    this.service.LocalStorage.addUserLocalStorage(response);
+    this.router.navigate(['/home']);
   }
 
   error(response: any){
-
+    this.errors = response.error.errors; 
   }
 
 }
