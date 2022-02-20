@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <label class="control-label">Nome</label>
                     <div>
-                        <input class="form-control" id="name" type="text" placeholder="Nome (requerido)" formControlName="nome" [ngClass]="{'is-invalid': displayMessage.name }" />
+                        <input class="form-control" id="name" type="text" placeholder="Nome (requerido)" formControlName="name" [ngClass]="{'is-invalid': displayMessage.name }" />
                         <span class="text-danger" *ngIf="displayMessage.name">
                             <p [innerHTML]="displayMessage.name"></p>
                         </span>
@@ -54,9 +54,9 @@
                     <div class="form-group">
                         <label class="control-label">CEP</label>
                         <div>
-                            <input class="form-control" id="cep" type="text" placeholder="CEP (requerido)" (blur)="getZipCode($event.target.value)" formControlName="cep" cep [textMask]="{mask: MASKS.cep.textMask}" [ngClass]="{ 'is-invalid': displayMessage.cep }" />
+                            <input class="form-control" id="zipCode" type="text" placeholder="CEP (requerido)" (blur)="getZipCode($event.target.value)" formControlName="zipCode" cep [textMask]="{mask: MASKS.cep.textMask}" [ngClass]="{ 'is-invalid': displayMessage.zipCode }" />
                             <span class="text-danger" *ngIf="displayMessage.cep">
-                            <p [innerHTML]="displayMessage.cep"></p>
+                            <p [innerHTML]="displayMessage.zipCode"></p>
                         </span>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
 
 
                 <div class="form-group">
-                    <input type="submit" value="addProvider" class="btn btn-primary">&nbsp;
+                    <input type="submit" value="Criar" class="btn btn-primary">&nbsp;
                     <a class="btn btn-info" [routerLink]="[ '/providers/get-all']">Voltar</a>
                 </div>
 

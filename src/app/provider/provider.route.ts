@@ -11,7 +11,7 @@ const providerRouterConfig: Routes = [
     {
         path: '', component: ProviderAppComponent,
         children: [
-            { path: 'new-provider', component: NewComponent },
+            { path: 'new-provider', component: NewComponent, data: [{ claim: { nome: 'Fornecedor', valor: 'Adicionar'}}] },
             { path: 'get-all', component: ListComponent },
             { path: 'edit/:id', component: EditComponent },
             { path: 'details/:id', component: DetailsComponent },

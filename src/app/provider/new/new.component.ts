@@ -103,7 +103,7 @@ export class NewComponent implements OnInit {
             })
         });
         
-        this.form.patchValue({ isActive: true, typeProvider: '1' });                             
+        this.form.patchValue({ isActive: true, typeProvider: '1', id: '1' });                             
     } 
 
     ngAfterViewInit(): void {
@@ -125,7 +125,7 @@ export class NewComponent implements OnInit {
     
     public addProvider(): void {
         if(this.form.dirty && this.form.valid){
-            this.providerModel = Object.assign({}, this.form, this.form.value);
+            this.providerModel = Object.assign({}, this.providerModel, this.form.value);
             this.formResult = JSON.stringify(this.providerModel);
 
             this.providerModel.address.zipCode = StringUtils.justNumbers(this.providerModel.address.zipCode);
