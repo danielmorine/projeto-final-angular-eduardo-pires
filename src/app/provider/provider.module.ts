@@ -2,6 +2,8 @@ import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgxSpinnerModule } from "ngx-spinner";
+
 import { DeleteComponent } from "./delete/delete.component";
 import { DetailsComponent } from "./details/details.component";
 import { EditComponent } from "./edit/edit.component";
@@ -33,6 +35,7 @@ import { ProviderGuard } from "./services/provider.guard";
         HttpClientModule,
         NgBrazil,
         TextMaskModule,
+        NgxSpinnerModule
     ],
     providers: [
         ProviderService,
