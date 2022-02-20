@@ -12,7 +12,7 @@ const providerRouterConfig: Routes = [
         path: '', component: ProviderAppComponent,
         children: [
             { path: 'new-provider', component: NewComponent },
-            { path: 'list', component: ListComponent },
+            { path: 'get-all', component: ListComponent },
             { path: 'edit/:id', component: EditComponent },
             { path: 'details/:id', component: DetailsComponent },
             { path: 'delete/:id', component: DeleteComponent }

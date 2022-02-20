@@ -11,7 +11,7 @@ import { ProviderService } from "../services/provider.service";
 
 export class DeleteComponent implements OnInit {
 
-    providerModel: Provider = new Provider();
+    providerModel: Provider;
 
     constructor(
         private service: ProviderService,

@@ -28,4 +28,13 @@ export abstract class BaseService{
         }
         return throwError(response);
     }
+
+    protected getAuthHeaderJSON(){
+        return {
+            headers: new HttpHeaders({ 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.LocalStorage.getUserToken()}`
+            })
+        };
+    }
 }

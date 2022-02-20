@@ -1,10 +1,10 @@
 import { Address } from "./address";
 
-export class Provider {
+export interface Provider {
     id: string;
     name:string;
     documentNumber:string;
-    isActive:boolean;
-    typeProvider:number;
+    isActive: string | boolean;
+    typeProvider: string | number;
     address:Address;
 }

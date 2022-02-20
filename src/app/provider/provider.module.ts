@@ -11,6 +11,9 @@ import { ProviderAppComponent } from "./provider.app.component";
 import { ProviderRoutingModule } from "./provider.route";
 import { ProviderService } from "./services/provider.service";
 
+import { NgBrazil } from 'ng-brazil';
+import { TextMaskModule } from 'angular2-text-mask';
+
 @NgModule({
     declarations: [
         ProviderAppComponent,
@@ -25,10 +28,12 @@ import { ProviderService } from "./services/provider.service";
         ProviderRoutingModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
+        NgBrazil,
+        TextMaskModule,
     ],
     providers: [
-        ProviderService
+        ProviderService      
     ]
 })
 
