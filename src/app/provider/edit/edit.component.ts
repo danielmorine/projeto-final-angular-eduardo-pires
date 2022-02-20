@@ -1,12 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChildren } from "@angular/core";
 import { AbstractControl, FormBuilder, FormControlName, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { fromEvent, merge, Observable } from "rxjs";
 
 import { IFormGroup, IFormBuilder } from '@rxweb/types';
 import { ToastrService } from "ngx-toastr";
 import { NgBrazilValidators } from 'ng-brazil';
 import { utilsBr } from 'js-brasil';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 import { Address } from "../models/address";
 import { Provider } from "../models/provider";
@@ -26,7 +27,9 @@ export class EditComponent implements OnInit {
 
     errors: any[]  =[];
     addressErrors: any[] = [];
+
     zipCode: string = '';
+    typeProvider: string | number;
 
     validationMessages: ValidationMessages;
     genericValidator: GenericValidator;
@@ -51,7 +54,9 @@ export class EditComponent implements OnInit {
     constructor(private fb: FormBuilder,
         private service: ProviderService,
         private router: Router,
-        private toastr: ToastrService)
+        private route: ActivatedRoute,
+        private toastr: ToastrService,
+        private spinner: NgxSpinnerService)
     {
         this.formBuilder = fb;
         this.validationMessages = {
@@ -84,10 +89,13 @@ export class EditComponent implements OnInit {
         };
 
         this.genericValidator = new GenericValidator(this.validationMessages);
+
+        this.providerModel = this.route.snapshot.data['fornecedor'];
+        this.typeProvider = this.providerModel.typeProvider;
     }
 
     ngOnInit(): void {
-
+        this.spinner.show();
         this.providerForm = this.formBuilder.group<Provider>({
             id: [''],
             name: ['', [Validators.required]],
@@ -107,8 +115,22 @@ export class EditComponent implements OnInit {
               state: ['', [Validators.required]]
             })
         });
-        this.zipCode = '';
-        this.providerForm.patchValue({ isActive: true, typeProvider: '1', id: '1' });                             
+
+        this.addressForm = this.formBuilder.group<Address>({
+            providerId:[''],
+              id:[''],
+              publicPlace: ['', [Validators.required]],
+              number: ['', [Validators.required]],
+              complement: [''],
+              neighborhood: ['', [Validators.required]],
+              zipCode: ['', [Validators.required, NgBrazilValidators.cep]],
+              city: ['', [Validators.required]],
+              state: ['', [Validators.required]]
+        })
+
+        setTimeout(() => {      
+            this.spinner.hide();
+          }, 1000);                           
     } 
 
     ngAfterViewInit(): void {
