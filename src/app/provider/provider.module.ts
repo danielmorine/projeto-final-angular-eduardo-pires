@@ -13,6 +13,8 @@ import { ProviderService } from "./services/provider.service";
 
 import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
+import { ProviderResolve } from "./services/provider.resolve";
+import { ProviderGuard } from "./services/provider.guard";
 
 @NgModule({
     declarations: [
@@ -33,7 +35,9 @@ import { TextMaskModule } from 'angular2-text-mask';
         TextMaskModule,
     ],
     providers: [
-        ProviderService      
+        ProviderService,
+        ProviderResolve,
+        ProviderGuard    
     ]
 })
 
